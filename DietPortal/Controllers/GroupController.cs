@@ -30,9 +30,9 @@ namespace DietPortal.Controllers
 
 
         [HttpGet("{userId}/User")]
-        public async Task<int> GetGroupId(int userId)
+        public async Task<Group> GetGroupById(int userId)
         {
-            return await gbl.GetGroupId(userId);
+            return await gbl.GetGroupByUserId(userId);
         }
 
 

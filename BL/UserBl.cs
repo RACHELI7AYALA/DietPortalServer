@@ -71,9 +71,9 @@ namespace BL
         {
             return await udl.GetUsersWithKg(groupId);
         }
-        public async Task<int> GetGroupId(int userId)
+        public async Task<Group> GetGroupById(int userId)
         {
-            return await gdl.GetGroupId(userId);
+            return await gdl.GetGroupById(userId);
         }
        
     }

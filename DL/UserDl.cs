@@ -61,14 +61,14 @@ namespace DL
         
             public async Task<List<UserWithKg>>  GetUsersWithKg(int groupId) {
 
-            return await dbContext.Weights.Where(w => w.GroupId == groupId).Join(dbContext.Users, w => w.UserId, u => u.Id,
-                   (w, u) => mapper.Map<Weight,UserWithKg>(w)).ToListAsync();
-                   //new UserWithKg
-                   //{
-                   //    Name = u.FirstName,
-                   //    Id = u.Id,
-                   //    Kg = w.Kg
-                   //}).ToListAsync();
+            return await dbContext.Weights.Where(w => w.GroupId == groupId/*&&( w.Date.AddDays(7) > DateTime.Now))*/).Join(dbContext.Users, w => w.UserId, u => u.Id,
+                   (w, u) => /*mapper.Map<Weight,UserWithKg>(w)).ToListAsync();*/
+                   new UserWithKg
+                   {
+                       Name = u.FirstName,
+                       Id = u.Id,
+                       Kg = w.Kg
+                   }).ToListAsync();
         }
        
 
