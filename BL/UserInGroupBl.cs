@@ -27,7 +27,7 @@ namespace BL
         public async Task<int> AddUserInGroup(UserInGroup userInGroup,string? password)
         {
            
-            if ( gdl.GetGroupById(userInGroup.UserId).Id == 0)
+            if ( gdl.GetGroupByUserId(userInGroup.UserId).Id == 0)
             {
                
                 Group g = await gdl.GetGroup(userInGroup.UserId);
@@ -80,7 +80,7 @@ namespace BL
         public async Task DeleteUserInGroup(UserInGroup userInGroup)
         {
 
-            if ((int)(await gdl.GetGroup(userInGroup.GroupId)).Status == 2)
+            if ((int)(await gdl.GetGroup(userInGroup.GroupId)).Status == 1)
             {
                 await uigdl.DeleteUserInGroup(userInGroup);
                 if (uigdl.GetAllUsers(userInGroup.GroupId) == null)

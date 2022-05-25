@@ -17,9 +17,9 @@ namespace DietPortal.Controllers
         {
             this.wbl = wbl;
         }
-        [HttpPost]
-      
-        public async Task<int> AddWeight([FromBody]Weight w)
+  
+        [HttpPost]      
+        public async Task<int> AddWeight([FromBody] Weight w)
         {
 
             return await wbl.AddWeight(w);

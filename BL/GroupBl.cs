@@ -46,8 +46,7 @@ namespace BL
         {
             Group g1=await gdl.UpdateGroup(g);
             if (g.Status == 1)
-            {
-    
+            {    
                 uigbl.GetAllUsers(g.Id).Result.ForEach(u => uigbl.GetAllUserGroups(u.Id).Result.ForEach(uig=>uigbl.DeleteUserInGroup(uig)));
             }
             return g1;

@@ -25,12 +25,12 @@ namespace DL
 
         public async Task<List<Group>> GetAllGroups()//&&&
         {
-            return await dbContext.Groups.Where(g=>g.Status!=3).ToListAsync();
+            return await dbContext.Groups.Where(g=>g.Status!=2).ToListAsync();
         }
         public async Task<Group> GetGroupByUserId(int userId)//!
         {
             UserInGroup u=await dbContext.UserInGroups.Where(g => g.UserId == userId)
-                .Include(uig => uig.Group).SingleOrDefaultAsync(uig => uig.Group.Status == 1);/////change to 1!!
+                .Include(uig => uig.Group).SingleOrDefaultAsync(uig => uig.Group.Status == 0);/////change to 0!!
             if (u != null)
             {
                 return u.Group;

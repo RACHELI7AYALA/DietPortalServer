@@ -53,7 +53,7 @@ namespace BL
         }
         public async Task<List<Weight>> GetProgress(int userId)
         {
-            return await wdl.GetProgress(userId, ubl.GetGroupById(userId).Result.Id);
+            return await wdl.GetProgress(userId, ubl.GetGroupByUserId(userId).Result.Id);
         }
     }
 }
