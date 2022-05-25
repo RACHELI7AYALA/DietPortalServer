@@ -23,9 +23,9 @@ namespace BL
         {
             return await gdl.GetGroup(id);
         }
-        public async Task<int> GetGroupId(int id)
+        public async Task<Group> GetGroupByUserId(int id)
         {
-            return await gdl.GetGroupId(id);
+            return await gdl.GetGroupByUserId(id);
         }
         public async Task<List<Group>> GetAllGroups()
         {

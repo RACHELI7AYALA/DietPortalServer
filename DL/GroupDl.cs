@@ -27,15 +27,16 @@ namespace DL
         {
             return await dbContext.Groups.Where(g=>g.Status!=3).ToListAsync();
         }
-        public async Task<int> GetGroupId(int userId)//!
+        public async Task<Group> GetGroupByUserId(int userId)//!
         {
             UserInGroup u=await dbContext.UserInGroups.Where(g => g.UserId == userId)
-                .Include(uig => uig.Group).SingleOrDefaultAsync(uig => uig.Group.Status == 1);
-            if (u!=null) { 
-                return u.Group.Id;
+                .Include(uig => uig.Group).SingleOrDefaultAsync(uig => uig.Group.Status == 1);/////change to 1!!
+            if (u != null)
+            {
+                return u.Group;
             }
             else
-                return 0;
+                return new Group();
             
             //return dbContext.UserInGroups.Where(g => g.UserId == userId)
             //   .Join(dbContext.Groups, ug => ug.GroupId, g => g.Id, 

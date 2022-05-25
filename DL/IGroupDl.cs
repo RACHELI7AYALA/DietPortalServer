@@ -8,7 +8,7 @@ namespace DL
     {
         public  Task<Group> GetGroup(int id);
         public  Task<List<Group>> GetAllGroups();
-        public  Task<int> GetGroupId(int userId);
+        public  Task<Group> GetGroupByUserId(int userId);
         public Task<int> AddGroup(Group g);
         public  Task<Group> UpdateGroup(Group g);
         public Task DeleteGroup(Group g);

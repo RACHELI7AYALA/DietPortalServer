@@ -15,7 +15,7 @@ namespace BL
         public Task<User> UpdateUser(User u);
         
         public Task<List<UserWithKg>> GetUsersWithKg(int groupId);
-        public  Task<int> GetGroupId(int userId);
+        public  Task<Group> GetGroupByUserId(int userId);
        
     }
 }

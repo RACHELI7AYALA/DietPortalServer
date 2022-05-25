@@ -27,7 +27,7 @@ namespace BL
         public async Task<int> AddUserInGroup(UserInGroup userInGroup,string? password)
         {
            
-            if (await gdl.GetGroupId(userInGroup.UserId) == 0)
+            if ( gdl.GetGroupById(userInGroup.UserId).Id == 0)
             {
                
                 Group g = await gdl.GetGroup(userInGroup.UserId);
