@@ -24,6 +24,7 @@ namespace Entities
         public double Weight { get; set; }
         public string Password { get; set; }
         public byte[] Profile { get; set; }
+        //public string ProfileImaePath { get; set; }
         [JsonIgnore]
         public virtual Gender GenderNavigation { get; set; }
         [JsonIgnore]

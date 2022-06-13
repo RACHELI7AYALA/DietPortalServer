@@ -44,7 +44,9 @@ namespace DL
         public async Task<int> AddUser(User u)
         {
             await dbContext.Users.AddAsync(u);
-          return  await dbContext.SaveChangesAsync();
+           await dbContext.SaveChangesAsync();
+          //  dbContext.Entry(u).GetDatabaseValues();
+            return u.Id;
             
         }
  

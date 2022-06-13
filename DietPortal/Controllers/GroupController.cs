@@ -23,7 +23,6 @@ namespace DietPortal.Controllers
         [HttpGet("{groupId}")]
         public async Task<Group> Get(int groupId)
         {
-
             return await gbl.GetGroup(groupId);
         }
        
@@ -39,7 +38,7 @@ namespace DietPortal.Controllers
         [HttpGet]
         public async Task<List<Group>> GetAllGroups()
         {
-           
+          
             return await gbl.GetAllGroups();
         }
         

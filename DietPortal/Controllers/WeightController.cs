@@ -21,8 +21,10 @@ namespace DietPortal.Controllers
         [HttpPost]      
         public async Task<int> AddWeight([FromBody] Weight w)
         {
+          
+                return await wbl.AddWeight(w);
 
-            return await wbl.AddWeight(w);
+          
 
         }
         [HttpGet("WeeklyWinnerGroup")]

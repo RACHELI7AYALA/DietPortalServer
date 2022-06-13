@@ -49,7 +49,7 @@ namespace DL
             await dbContext.Groups.AddAsync(g);
             
             await dbContext.SaveChangesAsync();
-            return await dbContext.Groups.Where(w => (w.GroupName == g.GroupName && w.Status == g.Status)).Select(g1=>g1.Id).SingleOrDefaultAsync();
+            return await dbContext.Groups.Where(w => (w.GroupName == g.GroupName && w.Status == g.Status)).Select(g1=>g1.Id).FirstOrDefaultAsync();
 
         }
        

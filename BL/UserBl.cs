@@ -45,20 +45,7 @@ namespace BL
         
         public async Task<int> AddUser(User u)
         {
-            //HttpPostedFileBase h;
-            //using (BinaryReader br = new BinaryReader(postedFile.InputStream))
-            //{
-            //    bytes = br.ReadBytes(postedFile.ContentLength);
-            //}
-            //FilesEntities entities = new FilesEntities();
-            //entities.tblFiles.Add(new tblFile
-            //{
-            //    Name = Path.GetFileName(postedFile.FileName),
-            //    ContentType = postedFile.ContentType,
-            //    Data = bytes
-            //});
-            //entities.SaveChanges();
-            //return RedirectToAction("Index");
+           
             return await udl.AddUser(u);
         }
 

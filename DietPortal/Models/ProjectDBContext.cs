@@ -312,7 +312,7 @@ namespace DietPortal.Models
 
             modelBuilder.Entity<Weight>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Weight");
 

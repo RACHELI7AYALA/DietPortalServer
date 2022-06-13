@@ -31,17 +31,16 @@ namespace DietPortal
         {
             
             _logger = logger;
-            await _next(httpContext);
-            //try
-            //{
-            //    await _next(httpContext);
-            //}
-            //catch(Exception ex)
-            //{
-            //    _logger.LogError("Error From My Middleare: " + ex.Message + "Stack Tracre is: " + ex.StackTrace);
-            //     httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                
-            //}
+
+            try
+            {
+                await _next(httpContext);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("error from my middleare: " + ex.Message + "stack tracre is: " + ex.StackTrace);
+                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    }
         }
     }
 

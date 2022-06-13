@@ -1,8 +1,10 @@
 ﻿using BL;
 using Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -52,13 +54,51 @@ namespace DietPortal.Controllers
         }
         
         
-        [HttpPost]
+       
+
+        [HttpPost("image/{userId}"), DisableRequestSizeLimit]
+       // [Route("{userId}")]
+        public async Task PostImage(int userId, [FromForm] IFormFile image)
+        {
+            // int eventId= await ieventbl.PostBL(e, userId);
+            var folderName = Path.Combine("Resources", "Images", userId.ToString());
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            Directory.CreateDirectory(directory);
+            string ImageFullPath = Path.Combine(folderName, image.FileName);
+            string filePath = Path.Combine(directory, image.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                image.CopyTo(fileStream);
+            }
+            User u = await ubl.GetUser(userId);
+            User newUser = new User
+            {
+                Id = userId,
+                IdentityNumber = u.IdentityNumber,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Email = u.Email,
+                DateOfBirth = u.DateOfBirth,
+                Gender = u.Gender,
+                Weight = u.Weight,
+                Password = u.Password,
+                //ProfileImageName=image.FileName,
+                //ProfileImagePath= ImageFullPath                
+            };
+            await ubl.UpdateUser(newUser);
 
 
-        public async Task AddUser([FromBody]User user)
-        {          
-           ubl.AddUser(user);
         }
+        [HttpPost]
+        public Task<int> AddUser([FromBody] User user)
+        {
+            return ubl.AddUser(user);
+        }
+        //[HttpPost]
+        //public int AddUser([FromBody] User user)
+        //{
+        //    return 2;
+        //}
         [HttpPost("/Group/{userInGroup}/{password?}")]
 
         public async Task<int> AddUserInGroup(UserInGroup userInGroup, string? password)
