@@ -313,7 +313,7 @@ namespace DL
 
             modelBuilder.Entity<Weight>(entity =>
             {
-                entity.HasNoKey();
+         
 
                 entity.ToTable("Weight");
 

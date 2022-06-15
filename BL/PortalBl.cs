@@ -41,12 +41,15 @@ namespace BL
                        Kg = null
                    }).ToList();
             else
-                return new GroupDetails
-                {
-                    Userswithkg = USERS,
-                    Sentedmesseges = await pdl.getMesseges(groupId),
-                    WeeklyGroupWinner = await wbl.GetWeeklyGroupWinner(groupId)
-                };
+            {
+                 return new GroupDetails
+                                {
+                                    Userswithkg = USERS,
+                                    Sentedmesseges = await pdl.getMesseges(groupId),
+                                    WeeklyGroupWinner = await wbl.GetWeeklyGroupWinner(groupId)
+                                };
+            }
+               
             return new GroupDetails();
         }
 

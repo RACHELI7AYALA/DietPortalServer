@@ -1,4 +1,5 @@
 ﻿using DL;
+using DTO;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -43,13 +44,18 @@ namespace BL
 
         }
         public async Task<KeyValuePair<List<int>, double?>> GetWeeklyGroupWinner(int id)
-        {
-            Dictionary<int, double?> users =
-               new Dictionary<int, double?>(wdl.GetWeeklyWinnerGroup().Result);
-            double? weight = users.Values.Max();
+        {           
+            //Dictionary<int, double?> users = new Dictionary<int, double?>(wdl.GetWeeklyWinnerGroup().Result);
+
+           
+            List<UserWithKg> users = await ubl.GetUsersWithKg(id);
+            double? maxWeight = -100;
+            users.ForEach(u => { if (u.Kg > maxWeight) maxWeight = u.Kg; });
+
+            
             List<int> winners = new List<int>(users
-                .Where(u => u.Value == weight).Select(u => u.Key).ToList());
-            return new KeyValuePair<List<int>, double?>(winners, weight);
+                .Where(user => user.Kg == maxWeight).Select(user => user.Id).ToList());
+            return new KeyValuePair<List<int>, double?>(winners, maxWeight);
         }
         public async Task<List<Weight>> GetProgress(int userId)
         {

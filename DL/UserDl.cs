@@ -23,8 +23,8 @@ namespace DL
 
         public async Task<User> GetUser(int id)
         {
-            User u=await dbContext.Users.SingleOrDefaultAsync(u => u.Id == id);
-            return u;
+            return await dbContext.Users.SingleOrDefaultAsync(u => u.Id == id);
+            
         }
 
         public async Task<User> LogIn(string firstName, string lastName, string password)
@@ -44,8 +44,7 @@ namespace DL
         public async Task<int> AddUser(User u)
         {
             await dbContext.Users.AddAsync(u);
-           await dbContext.SaveChangesAsync();
-          //  dbContext.Entry(u).GetDatabaseValues();
+            await dbContext.SaveChangesAsync();
             return u.Id;
             
         }

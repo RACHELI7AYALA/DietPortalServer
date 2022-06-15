@@ -36,8 +36,8 @@ namespace DietPortal.Controllers
         public async Task<User>LogIn(string name,string password)
         {
            
-            User u= await ubl.LogIn(name,password);                                                      
-                  return u;
+            return await ubl.LogIn(name,password);                                                      
+                
         }
 
         [HttpGet("{id}/Group")]
@@ -94,11 +94,7 @@ namespace DietPortal.Controllers
         {
             return ubl.AddUser(user);
         }
-        //[HttpPost]
-        //public int AddUser([FromBody] User user)
-        //{
-        //    return 2;
-        //}
+        
         [HttpPost("/Group/{userInGroup}/{password?}")]
 
         public async Task<int> AddUserInGroup(UserInGroup userInGroup, string? password)

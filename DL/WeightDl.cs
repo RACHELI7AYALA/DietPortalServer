@@ -30,9 +30,9 @@ namespace DL
         public async Task<Dictionary<int, double?>> GetWeeklyWinner()
         {
             DateTime today = DateTime.Today;
-            return await dbContext.Weights.Where(w => w.Date.AddDays(7) >= today)
+           return await dbContext.Weights.Where(w => w.Date.AddDays(7) >= today)
                 .Select(u => new { id = u.UserId, w = u.Kg }).ToDictionaryAsync(u => u.id, u=> u.w);
-
+             
         }
         public async Task<Dictionary<int, double?>> GetWeeklyGroupWinner(int id)
         {

@@ -23,8 +23,8 @@ namespace DietPortal.Controllers
         [HttpGet("{groupId}/Group")]
         public async Task<DTO.GroupDetails> getGroupDetails(int groupId)
         {
-            GroupDetails g = await pbl.getGroupDetails(groupId);
-            return g;
+            return await pbl.getGroupDetails(groupId);
+             
         }
 
         [HttpPost]
