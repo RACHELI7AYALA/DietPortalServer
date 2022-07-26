@@ -71,7 +71,20 @@ namespace DL
                        Kg = w.Kg
                    }).ToListAsync();
         }
-       
+        public async Task<List<UserWithKg>> GetAllUsersWithKg(int groupId)
+        {
+
+            return await dbContext.Weights.Where(w => w.GroupId == groupId).Join(dbContext.Users, w => w.UserId, u => u.Id,
+                   (w, u) => /*mapper.Map<Weight,UserWithKg>(w)).ToListAsync();*/
+                   new UserWithKg
+                   {
+                       Name = u.FirstName,
+                       Id = u.Id,
+                       Kg = w.Kg
+                   }).ToListAsync();
+        }
+
+
 
     }
 

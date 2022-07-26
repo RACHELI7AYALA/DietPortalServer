@@ -1,6 +1,7 @@
 using BL;
 using DL;
-
+using LazyCache;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,10 +33,10 @@ namespace DietPortal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<ProjectDBContext>(options => options.UseSqlServer(
                Configuration.GetConnectionString("OurDb")), ServiceLifetime.Scoped);
             services.AddAutoMapper(typeof(Startup));
-
             services.AddScoped<IUserInGroupBl, UserInGroupBl>();
             services.AddScoped<IUserInGroupDl, UserInGroupDl>();
             services.AddScoped<IRatingDl, RatingDl>();
@@ -53,7 +54,11 @@ namespace DietPortal
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DietPortal", Version = "v1" });
             });
+            services.AddLazyCache();
+            services.AddMemoryCache();
             services.AddResponseCaching();
+           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

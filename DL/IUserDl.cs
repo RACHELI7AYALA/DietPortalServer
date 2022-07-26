@@ -17,6 +17,8 @@ namespace DL
         public Task<int> AddUser(User u);
         public Task<User> UpdateUser(User u);
         public Task<List<UserWithKg>> GetUsersWithKg(int groupId);
-        
+        public Task<List<UserWithKg>> GetAllUsersWithKg(int groupId);
+
+
     }
 }
