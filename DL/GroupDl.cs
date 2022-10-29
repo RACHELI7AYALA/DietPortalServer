@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -72,5 +73,18 @@ namespace DL
             await dbContext.SaveChangesAsync();
 
         }
+        public async Task<Group> UpdateGroupStatusAndDate(int groupId, DateTime startDate)
+        {
+            Group groupToUpdate = await dbContext.Groups.FindAsync(groupId);
+            if (groupToUpdate == null)
+                return null;
+            groupToUpdate.StartDate = startDate;
+            groupToUpdate.Status = (int)StatusGroupEnum.Active;
+            dbContext.Entry(groupToUpdate).CurrentValues.SetValues(groupToUpdate);
+            await dbContext.SaveChangesAsync();
+
+            return groupToUpdate;
+        }
+
     }
 }

@@ -77,7 +77,7 @@ namespace DietPortal.Controllers
                 IdentityNumber = u.IdentityNumber,
                 FirstName = u.FirstName,
                 LastName = u.LastName,
-                Email = u.Email,
+                Email= u.Email,
                 DateOfBirth = u.DateOfBirth,
                 Gender = u.Gender,
                 Weight = u.Weight,

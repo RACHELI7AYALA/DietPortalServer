@@ -56,16 +56,18 @@ namespace DL
         public async Task<KeyValuePair<List<int>, double?>> GetGroupWinner(int id)
         {
 
-            //List<UserWithKg> users = await udl.GetAllUsersWithKg(id);
+            List<UserWithKg> users = await udl.GetAllUsersWithKg(id);
 
-            //var winner = users.GroupBy(item => item.Name)
-            //.Select(group => new { user = group.Key, weight = group.Sum(item => item.Kg) })
-            //.ToList();
+            var weightByUser = users.GroupBy(item => item.Id)
+            .Select(group => new { userId = group.Key, weight = group.Sum(item => item.Kg) })
+            .ToList();
+            double? max= weightByUser.Max(u1 => u1.weight);
+            List<int> winners = weightByUser.FindAll(w => w.weight == max).Select(u=>u.userId).ToList();
 
-            //KeyValuePair<List<int>, double?> l = users.Where(u => u.Name == winner.Max(u1 => u1.weight).);
+            KeyValuePair<List<int>, double?> l = new KeyValuePair<List<int>, double?>(winners, max);
 
-             KeyValuePair<List<int>, double?> l= new KeyValuePair<List<int>, double?>();
-             return l;
+          
+            return l;
 
         }
 

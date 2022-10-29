@@ -73,8 +73,9 @@ namespace DL
         }
         public async Task<List<UserWithKg>> GetAllUsersWithKg(int groupId)
         {
+            DateTime today = DateTime.Today;
 
-            return await dbContext.Weights.Where(w => w.GroupId == groupId).Join(dbContext.Users, w => w.UserId, u => u.Id,
+            return await dbContext.Weights.Where(w => w.GroupId == groupId && w.Date.AddDays(7) >= today)‏.Join(dbContext.Users, w => w.UserId, u => u.Id,
                    (w, u) => /*mapper.Map<Weight,UserWithKg>(w)).ToListAsync();*/
                    new UserWithKg
                    {

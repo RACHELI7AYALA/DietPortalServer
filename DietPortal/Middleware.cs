@@ -36,6 +36,7 @@ namespace DietPortal
             {
                 await _next(httpContext);
             }
+            
             catch (Exception ex)
             {
                 _logger.LogError("error from my middleare: " + ex.Message + "stack tracre is: " + ex.StackTrace);
